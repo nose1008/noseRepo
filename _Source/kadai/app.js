@@ -23,7 +23,7 @@ const setMessage = (id) => {
 // 勝利判定のパターン関数
 const filterById = (targetArray, idArray) => {
     return targetArray.filter((e) => {
-        return (e.id === idArray[0] || e.id === idArray[1] || e.id === idArray[2]);
+        return (e.id === idArray[0] || e.id === idArray[1] || e.id === idArray[2] );
     });
 }
 // 勝利判定パターン
@@ -42,12 +42,12 @@ const isWinner = (symbol) => {
     const result = lineArray.some((line) => {
         // every: 全て条件を満たしていればTrueを返す
         const subResult = line.every((square) => {
-            if (symbol === 'maru') {
+             if (symbol === 'maru') {
                 return square.classList.contains('js-maru-checked');
             } else 
             if (symbol === 'batsu') {
                 return square.classList.contains('js-batsu-checked');
-            }
+            } 
         });
 
         if (subResult) { winningLine = line }
@@ -60,7 +60,7 @@ const isWinner = (symbol) => {
 
 // ゲーム終了時の関数
 const gameOver = () => {
-    // 全てのマスをクリック不可にする
+    // 試合終了後に 全てのマスをクリック不可にする
     squaresArray.forEach((square) => {
         square.classList.add('js-unclickable');
     });
@@ -78,9 +78,9 @@ const gameOver = () => {
 
 
 // ゲームの初期化の関数
-const initGame = () => {
+ const initGame = () => {
     flag = false;
-    counter = 9;
+    counter =9;
     winningLine = null;
     squaresArray.forEach((square) => {
         square.classList.remove('js-maru-checked');
@@ -93,11 +93,11 @@ const initGame = () => {
 }
 resetBtn.addEventListener('click', function() {
     initGame();
-});
+}); 
 
 
 //　マスをクリックした時のイベント発火
-squaresArray.forEach((square) => {
+ squaresArray.forEach((square) => {
     square.addEventListener('click', () => {
         if (flag === true) {
             square.classList.add('js-maru-checked');
@@ -124,13 +124,13 @@ squaresArray.forEach((square) => {
 
             setMessage('maru-turn');
             flag = true;
-        }
+        } 
 
         counter--;
         // 引き分け判定
-        if (counter === 0) {
+         if (counter === 0) {
             setMessage('draw');
             gameOver();
-        }
+        } 
     });
 });
